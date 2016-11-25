@@ -1,0 +1,32 @@
+module DBBackup
+	@config = Chassis.config
+
+	include Vagrant::Action::Builtin
+
+	require_relative "lib/backupconfirm.rb"
+	require_relative "lib/errors.rb"
+	require_relative "lib/plugin.rb"
+
+	def self.run_remote(machine, raw_command, options = {})
+		command_output = lambda do |channel, data|
+			ui_method = (channel == :stdout) ? :info : :error
+			machine.ui.send(ui_method, data)
+		end
+		begin
+			exit_code = machine.communicate.sudo(raw_command, :elevated => true, :good_exit => (0..255).to_a) do |channel, data|
+				command_output.call(channel, data)
+			end
+		rescue => e
+			command_output.call(:stderr, e.message)
+		end
+		raise Errors::CommandFailed unless exit_code == 0
+
+		exit_code
+	end
+
+	def self.backup(machine)
+		command = "/vagrant/extensions/db-backup/backup.sh %s" % @config["database"]["name"]
+
+		run_remote machine, command
+	end
+end
