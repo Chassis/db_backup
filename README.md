@@ -2,6 +2,8 @@
 
 This Chassis extension backs up your database when you destroy your Vagrant box, and restores it when you recreate the machine.
 
+Since WordPress stores all data in MySQL (except uploads, which are stored in a shared folder), this allows you to safely destroy Chassis machines when you're not using them, without losing any data.
+
 ## Installation
 
 Clone this repository into your Chassis `extensions` directory:
