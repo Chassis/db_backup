@@ -1,6 +1,7 @@
 class db-backup (
 	$file,
 	$name,
+	$prefix,
 	$wpdir
 ) {
 	exec { "${name}-import":
@@ -8,7 +9,7 @@ class db-backup (
 		logoutput   => true,
 		environment => "HOME=${root_home}",
 		onlyif      => "/usr/bin/test -f ${file}",
-		unless      => "/usr/bin/mysql -e 'DESCRIBE sz_posts' ${name} > /dev/null",
+		unless      => "/usr/bin/mysql -e 'DESCRIBE ${prefix}_posts' ${name} > /dev/null",
 		require     => Mysql::Db[$name],
 		before      => Wp::Site["${wpdir}"]
 	}
