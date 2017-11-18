@@ -1,3 +1,4 @@
+# Create our backup class.
 class db-backup (
 	$file,
 	$name,
