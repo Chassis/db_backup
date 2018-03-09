@@ -40,3 +40,12 @@ $ vagrant up
 ==> default: Notice: /Stage[main]/Db-backup/Exec[wordpress-import]/returns: executed successfully
 [...]
 ```
+
+## Configuration
+
+You can optionally have a backup made when you run `vagrant halt` and `vagrant suspend`. To do this you can add the following into your yaml file.
+```
+db-backup:
+    halt: yes
+    suspend: yes
+```
