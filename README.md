@@ -10,7 +10,7 @@ Clone this repository into your Chassis `extensions` directory:
 
 ```sh
 $ cd extensions
-$ git clone https://github.com/Chassis/db-backup
+$ git clone https://github.com/Chassis/db_backup
 ```
 
 ## Using
