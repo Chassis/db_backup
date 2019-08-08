@@ -1,5 +1,5 @@
 # Create our backup class.
-class db-backup (
+class db_backup (
 	$file,
 	$name,
 	$prefix,

@@ -25,7 +25,7 @@ module DBBackup
 	end
 
 	def self.backup(machine)
-		command = "/vagrant/extensions/db-backup/backup.sh %s" % @config["database"]["name"]
+		command = "/vagrant/extensions/db_backup/backup.sh %s" % @config["database"]["name"]
 
 		run_remote machine, command
 	end
