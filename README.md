@@ -49,3 +49,18 @@ db-backup:
     halt: yes
     suspend: yes
 ```
+
+## Windows Troubleshooting
+
+`bad interpreter: No such file or directory`
+
+This can be fixed by doing either of the following:
+```
+vagrant ssh
+sed -i -e 's/\r$//' /vagrant/extensions/db-backup/backup.sh
+exit
+```
+or
+1. Open `backup.sh` in NotePad++.
+2. Go to Edit -> EOL Conversion -> UNIX/OSX Format
+3. Save the file.
