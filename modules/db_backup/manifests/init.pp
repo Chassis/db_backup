@@ -12,6 +12,6 @@ class db_backup (
 		onlyif      => "/usr/bin/test -f ${file}",
 		unless      => "/usr/bin/mysql -e 'DESCRIBE ${prefix}_posts' ${name} > /dev/null",
 		require     => Mysql::Db[$name],
-		before      => Wp::Site[$wpdir]
+		before      => Wp::Core[$wpdir]
 	}
 }
