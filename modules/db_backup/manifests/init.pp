@@ -1,7 +1,6 @@
 # Create our backup class.
 class db_backup (
 	$file,
-	$name,
 	$prefix,
 	$wpdir
 ) {
